@@ -1,9 +1,3 @@
-
-body {
-   
-    )
-}
-
 #bg {
 -webkit-clip-path: circle(68.9% at 86% 47%);
 clip-path: circle(68.9% at 86% 47%);
@@ -32,8 +26,4 @@ clip-path: circle(68.9% at 86% 47%);
     position: absolute ;
     top: 100px ;
     width: 150px ;
-}
-
-.col-sm-4 {
-    
 }
