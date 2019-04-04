@@ -22,6 +22,8 @@ clip-path: circle(68.9% at 86% 47%);
     0px 8px 13px rgba(0, 0, 0, 0.1),
     0px 18px 23px rgba(0, 0, 0, 0.1);
 }
-.jumbotron .sidebar {
-    padding-left: 10px ;
+.sidebar {
+    position: absolute ;
+    top: 100px ;
+    width: 150px ;
 }
