@@ -1,9 +1,14 @@
+require('dotenv').config({ path: './bin/.env' });
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const favicon = require('serve-favicon');
 const logger = require('morgan');
+const session = require('express-session');
+const flash = require('connect-flash');
 
+require('./DB/connect');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/registration');
@@ -18,7 +23,34 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// session
+app.use(session({
+  secret: 'mySecretCookieSalt',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    maxAge: 3600000, // 1hr
+    // secure: true, // in production (can use config directory)
+    // domain: config.host,
+    path: '/',
+  },
+}));
+
+// connect-flash added for flash messages
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.email = req.flash('email');
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.introAgain = req.flash('introAgain');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.jwt = req.flash('jwt');
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

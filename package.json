@@ -9,12 +9,18 @@
     "lint-w": "esw --color --watch"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^7.0.0",
     "express": "~4.16.0",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "mongoose": "^5.4.22",
+    "morgan": "~1.9.0",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
